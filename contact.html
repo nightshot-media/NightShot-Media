@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact — Nightshot Media</title>
+  <meta name="description" content="Get in touch with Nightshot Media to book a multicam shoot.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <a class="logo" href="index.html">Nightshot</a>
+  <nav>
+    <a href="index.html">Work</a>
+    <a href="about.html">About</a>
+    <a href="contact.html" class="active">Contact</a>
+  </nav>
+</header>
+
+<main class="page">
+  <h1>Contact</h1>
+  <p>Tell us about your event or project, or email us directly at
+    <a class="email" href="mailto:contact@nightshot.media">contact@nightshot.media</a>.</p>
+
+  <form id="form">
+    <label>Name
+      <input type="text" id="name" required>
+    </label>
+    <label>Your email
+      <input type="email" id="email" required>
+    </label>
+    <label>Message
+      <textarea id="message" placeholder="Event type, date, location, number of cameras..." required></textarea>
+    </label>
+    <button class="btn" type="submit">Send message</button>
+  </form>
+</main>
+
+<footer>
+  <a href="mailto:contact@nightshot.media">contact@nightshot.media</a>
+  <span class="copy">© <span class="yr"></span> Nightshot Media</span>
+</footer>
+
+<script>
+  document.querySelector('.yr').textContent = new Date().getFullYear();
+  // Opens the visitor's email app with a pre-filled message to contact@nightshot.media
+  document.getElementById('form').addEventListener('submit', e => {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const msg = document.getElementById('message').value;
+    const subject = encodeURIComponent('Inquiry from ' + name);
+    const body = encodeURIComponent(msg + '\n\n— ' + name + '\n' + email);
+    window.location.href = 'mailto:contact@nightshot.media?subject=' + subject + '&body=' + body;
+  });
+</script>
+</body>
+</html>

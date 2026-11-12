@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nightshot Media — Multicam Video Production</title>
+  <meta name="description" content="Multicam video production portfolio by Nightshot Media.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <a class="logo" href="index.html">Nightshot</a>
+  <nav>
+    <a href="index.html" class="active">Work</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="intro">
+  <p class="role">Multicam Video Production</p>
+  <p class="sub">Live events · Concerts · Conferences</p>
+</section>
+
+<main class="work">
+  <!--
+    TO ADD YOUR OWN VIDEOS:
+    1. Set data-video to an embed URL
+       (YouTube: https://www.youtube.com/embed/VIDEO_ID
+        Vimeo:   https://player.vimeo.com/video/VIDEO_ID)
+    2. Optional thumbnail: add <img src="images/yourfile.jpg" alt=""> inside the .video div
+    3. Copy/paste a whole <article> block to add more projects.
+  -->
+  <article class="project">
+    <h2>Project Title One</h2>
+    <p class="cat">Live Concert · 4 Cameras</p>
+    <div class="video" data-video="https://www.youtube.com/embed/VIDEO_ID_1"><span class="play"></span></div>
+  </article>
+
+  <article class="project">
+    <h2>Project Title Two</h2>
+    <p class="cat">Conference Keynote · 3 Cameras</p>
+    <div class="video" data-video="https://www.youtube.com/embed/VIDEO_ID_2"><span class="play"></span></div>
+  </article>
+
+  <article class="project">
+    <h2>Project Title Three</h2>
+    <p class="cat">Wedding Ceremony · 2 Cameras</p>
+    <div class="video" data-video="https://www.youtube.com/embed/VIDEO_ID_3"><span class="play"></span></div>
+  </article>
+
+  <article class="project">
+    <h2>Project Title Four</h2>
+    <p class="cat">Sports Event · 5 Cameras</p>
+    <div class="video" data-video="https://www.youtube.com/embed/VIDEO_ID_4"><span class="play"></span></div>
+  </article>
+
+  <article class="project">
+    <h2>Project Title Five</h2>
+    <p class="cat">Panel Discussion · 3 Cameras</p>
+    <div class="video" data-video="https://www.youtube.com/embed/VIDEO_ID_5"><span class="play"></span></div>
+  </article>
+</main>
+
+<footer>
+  <a href="mailto:contact@nightshot.media">contact@nightshot.media</a>
+  <span class="copy">© <span class="yr"></span> Nightshot Media</span>
+</footer>
+
+<script>
+  document.querySelector('.yr').textContent = new Date().getFullYear();
+  // Click a video to play it right in place
+  document.querySelectorAll('.video').forEach(v => {
+    v.addEventListener('click', () => {
+      const url = v.dataset.video;
+      if (!url) return;
+      const f = document.createElement('iframe');
+      f.src = url + (url.includes('?') ? '&' : '?') + 'autoplay=1';
+      f.allow = 'autoplay; fullscreen; picture-in-picture';
+      f.allowFullscreen = true;
+      v.innerHTML = '';
+      v.appendChild(f);
+    }, { once: true });
+  });
+</script>
+</body>
+</html>

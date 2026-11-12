@@ -1,0 +1,72 @@
+@font-face {
+  font-family: "Sequel";
+  src: url("fonts/sequel-100-black.ttf") format("truetype");
+  font-display: swap;
+}
+:root {
+  --display: "Sequel", -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
+  --bg: #000;
+  --text: #fff;
+  --muted: #8a8a8a;
+  --line: #222;
+  --green: #2bff6b;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+}
+.logo, nav a, .intro p, .project h2, .project .cat, .page h1, label, .btn, footer { font-family: var(--display); font-weight: 400; }
+a { color: inherit; text-decoration: none; }
+
+/* Header */
+header { padding: 56px 24px 0; }
+.logo { color: var(--green); display: inline-block; font-size: 1.3rem; letter-spacing: 0.2em; text-transform: uppercase; padding-left: 0.2em; }
+nav { margin-top: 34px; display: flex; justify-content: center; flex-wrap: wrap; gap: 14px 30px; }
+nav a { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); transition: color .2s; }
+nav a:hover, nav a.active { color: var(--text); }
+
+/* Intro */
+.intro { margin: 56px auto 70px; padding: 0 24px; }
+.intro .role { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; }
+.intro .sub { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+
+/* Work: one big video per row */
+.work { max-width: 1000px; margin: 0 auto; padding: 0 20px 40px; }
+.project { margin-bottom: 90px; }
+.project h2 { font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; }
+.project .cat { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin: 6px 0 22px; }
+.video { position: relative; aspect-ratio: 16/9; background: linear-gradient(135deg, #17171b, #060607); cursor: pointer; overflow: hidden; }
+.video img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.play { position: absolute; inset: 0; margin: auto; width: 0; height: 0; border-left: 32px solid #fff; border-top: 20px solid transparent; border-bottom: 20px solid transparent; transform: translateX(5px); opacity: .9; transition: transform .2s, opacity .2s; }
+.video:hover .play { opacity: 1; transform: translateX(5px) scale(1.12); }
+
+/* About + Contact */
+.page { max-width: 560px; margin: 70px auto 120px; padding: 0 24px; }
+.page h1 { font-size: 0.9rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 18px; }
+.page p { color: var(--muted); margin-bottom: 30px; }
+.page .email { color: var(--text); border-bottom: 1px solid var(--muted); }
+form { display: flex; flex-direction: column; gap: 18px; text-align: left; margin-top: 36px; }
+label { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); display: flex; flex-direction: column; gap: 8px; }
+input, textarea { background: #0c0c0c; border: 1px solid var(--line); color: var(--text); padding: 13px 14px; font: 1rem/1.4 inherit; outline: none; transition: border-color .2s; }
+input:focus, textarea:focus { border-color: var(--muted); }
+textarea { min-height: 150px; resize: vertical; }
+.btn { align-self: center; margin-top: 8px; padding: 13px 34px; background: var(--text); color: var(--bg); border: 0; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; cursor: pointer; transition: opacity .2s; }
+.btn:hover { opacity: .8; }
+
+/* Footer */
+footer { padding: 50px 24px 60px; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+footer a:hover { color: var(--text); }
+footer .copy { display: block; margin-top: 10px; }
+
+@media (max-width: 560px) {
+  header { padding-top: 40px; }
+  .logo { font-size: 1.15rem; }
+  .project { margin-bottom: 60px; }
+  .play { border-left-width: 24px; border-top-width: 15px; border-bottom-width: 15px; }
+}
