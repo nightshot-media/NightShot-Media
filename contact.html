@@ -3,57 +3,60 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; frame-src https://player.vimeo.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Contact — Nightshot Media</title>
   <meta name="description" content="Get in touch with Nightshot Media to book a multicam shoot.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
 <header>
   <a class="logo" href="index.html">Nightshot</a>
-  <nav>
+  <nav aria-label="Main">
     <a href="index.html">Work</a>
     <a href="about.html">About</a>
-    <a href="contact.html" class="active">Contact</a>
+    <a href="contact.html" class="active" aria-current="page">Contact</a>
   </nav>
 </header>
 
-<main class="page">
+<main id="main" class="page">
   <h1>Contact</h1>
   <p>Tell us about your event or project, or email us directly at
     <a class="email" href="mailto:contact@nightshot.media">contact@nightshot.media</a>.</p>
 
-  <form id="form">
-    <label>Name
-      <input type="text" id="name" required>
+  <form id="form" novalidate>
+    <label for="name">Name
+      <input type="text" id="name" name="name" autocomplete="name" maxlength="100" required>
     </label>
-    <label>Your email
-      <input type="email" id="email" required>
+    <label for="email">Your email
+      <input type="email" id="email" name="email" autocomplete="email" maxlength="254" required>
     </label>
-    <label>Message
-      <textarea id="message" placeholder="Event type, date, location, number of cameras..." required></textarea>
+    <label for="message">Message
+      <textarea id="message" name="message" maxlength="5000" placeholder="Event type, date, location, number of cameras..." required></textarea>
     </label>
+    <p class="note">Sending this form opens your email app with a message addressed to contact@nightshot.media. This website does not receive or store what you type. We use your details only to respond to your inquiry (see our <a href="privacy.html">Privacy Policy</a>). Please don't include sensitive information such as payment card or government ID numbers.</p>
     <button class="btn" type="submit">Send message</button>
+    <p class="form-status" role="status"></p>
   </form>
 </main>
 
 <footer>
-  <a href="mailto:contact@nightshot.media">contact@nightshot.media</a>
-  <span class="copy">© <span class="yr"></span> Nightshot Media</span>
+  <p class="biz">Nightshot Media &middot; <a href="mailto:contact@nightshot.media">contact@nightshot.media</a></p>
+  <nav class="legal-nav" aria-label="Legal and privacy">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Service</a>
+    <a href="cancellation.html">Cancellation &amp; Refunds</a>
+    <a href="cookies.html">Cookie Policy</a>
+    <button type="button" class="linkbtn" data-cookie-prefs>Cookie Preferences</button>
+    <a href="accessibility.html">Accessibility</a>
+    <a href="privacy-request.html">Privacy Request</a>
+  </nav>
+  <span class="copy">&copy; <span class="yr"></span> Nightshot Media</span>
 </footer>
 
-<script>
-  document.querySelector('.yr').textContent = new Date().getFullYear();
-  // Opens the visitor's email app with a pre-filled message to contact@nightshot.media
-  document.getElementById('form').addEventListener('submit', e => {
-    e.preventDefault();
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const msg = document.getElementById('message').value;
-    const subject = encodeURIComponent('Inquiry from ' + name);
-    const body = encodeURIComponent(msg + '\n\n— ' + name + '\n' + email);
-    window.location.href = 'mailto:contact@nightshot.media?subject=' + subject + '&body=' + body;
-  });
-</script>
+<script src="js/consent.js" defer></script>
+<script src="js/site.js" defer></script>
 </body>
 </html>
