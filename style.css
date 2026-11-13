@@ -38,10 +38,10 @@ nav a:hover, nav a.active { color: var(--text); }
 /* Work: one big video per row */
 .work { max-width: 1000px; margin: 0 auto; padding: 0 20px 40px; }
 .project { margin-bottom: 90px; }
-.project h2 { font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; }
+.project h2 { font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 22px; }
 .project .cat { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin: 6px 0 22px; }
 .video { position: relative; aspect-ratio: 16/9; background: linear-gradient(135deg, #17171b, #060607); cursor: pointer; overflow: hidden; }
-.video img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.video img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #000; }
 .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .play { position: absolute; inset: 0; margin: auto; width: 0; height: 0; border-left: 32px solid #fff; border-top: 20px solid transparent; border-bottom: 20px solid transparent; transform: translateX(5px); opacity: .9; transition: transform .2s, opacity .2s; }
 .video:hover .play { opacity: 1; transform: translateX(5px) scale(1.12); }
