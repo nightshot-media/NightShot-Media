@@ -34,8 +34,7 @@ Legend: [x] done in code, [ ] needs owner input / decision.
 3. Contact form had no notice about what happens to submitted data.
 4. Home page had no `<h1>`, no `<main>` around the intro, no skip link, no visible focus styling (`outline: none` on inputs), video "buttons" were clickable `<div>`s (not keyboard reachable), form-field borders below 3:1 contrast, inline `style` attribute (blocks a strict CSP).
 5. No Content Security Policy / referrer policy.
-6. Font licensing unverified (see ASSET_LICENSE_AUDIT.md).
-7. Music/performance rights in portfolio videos unverified (see ASSET_LICENSE_AUDIT.md).
+6. Font and media licensing: confirmed by owner on 2026-11-13 (see ASSET_LICENSE_AUDIT.md).
 
 ## 3. What was implemented (final status)
 
@@ -112,7 +111,6 @@ Still open / worth doing:
 - "Live switching, synced multi-angle edits, and clean audio. ... we bring the gear and the crew to cover it all." (About): confirm accurate.
 - "Live events · Concerts · Conferences" (home): the portfolio shows only concerts/club events; confirm you serve conferences.
 - "Multicam Video Production": fine as a description; no measurable/superlative claims (no "#1", "best", counts, awards) were found.
-- Artist/venue names in titles (Silva Bumpa, Ashibah, DJ Costa, Boys Noize, Bijou, Big Night Live, We Belong Here): confirm you may name them and show their performances publicly.
 - "Ross McGregor" appears in Vimeo titles/filenames. He is a partner (per owner), so no separate credit question; he is not named on the site.
 - Video-card title mismatches: the third Silva Bumpa video is titled "SILVA BUMPA 10" on Vimeo, and the DJ Costa card uses the video titled "HAPPY DAZE 9" on Vimeo (per your instruction). Rename on Vimeo if public titles matter.
 
