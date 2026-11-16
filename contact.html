@@ -28,7 +28,9 @@
   <p>Tell us about your event or project, or email us directly at
     <a class="email" href="mailto:contact@nightshot.media">contact@nightshot.media</a>.</p>
 
-  <form id="form" novalidate>
+  <form id="form" action="send.php" method="post" data-ajax>
+    <input type="hidden" name="form" value="contact">
+    <div class="hp" aria-hidden="true"><label>Leave this field empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
     <label for="name">Name
       <input type="text" id="name" name="name" autocomplete="name" maxlength="100" required>
     </label>
@@ -38,7 +40,7 @@
     <label for="message">Message
       <textarea id="message" name="message" maxlength="5000" placeholder="Event type, date, location, number of cameras..." required></textarea>
     </label>
-    <p class="note">Sending this form opens your email app with a message addressed to contact@nightshot.media. This website does not receive or store what you type. We use your details only to respond to your inquiry (see our <a href="privacy.html">Privacy Policy</a>). Please don't include sensitive information such as payment card or government ID numbers.</p>
+    <p class="note">When you press Send, your message is delivered to contact@nightshot.media. This website does not keep a copy of it. We use your details only to respond to your inquiry (see our <a href="privacy.html">Privacy Policy</a>). Please don't include sensitive information such as payment card or government ID numbers.</p>
     <button class="btn" type="submit">Send message</button>
     <p class="form-status" role="status"></p>
   </form>

@@ -30,9 +30,11 @@
   <p class="lead">Use this page to ask about your personal information: to access it, correct it, delete it, opt out of marketing, or ask a privacy question.</p>
 
   <h2>How requests work</h2>
-  <p>This site has no accounts or database. The only personal information we typically hold is what you have emailed us. The form below opens your email app with a request addressed to contact@nightshot.media; nothing is sent to us until you send that email. You can also email us directly. We may ask you to confirm your identity (usually by replying from the same email address you used) and will not ask for more than we need. Requests are read and handled by Nightshot Media&rsquo;s owners; we do not publish them.</p>
+  <p>This site has no accounts or database. The only personal information we typically hold is what you have sent us by email or through the forms on this site. The form below sends your request to contact@nightshot.media. You can also email us directly. We may ask you to confirm your identity (usually by replying from the same email address you used) and will not ask for more than we need. Requests are read and handled by Nightshot Media&rsquo;s owners; we do not publish them.</p>
 
-  <form id="privacy-form" novalidate>
+  <form id="privacy-form" action="send.php" method="post" data-ajax>
+    <input type="hidden" name="form" value="privacy">
+    <div class="hp" aria-hidden="true"><label>Leave this field empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
     <label for="name">Name
       <input type="text" id="name" name="name" autocomplete="name" maxlength="100" required>
     </label>
@@ -53,7 +55,7 @@
       <textarea id="details" name="details" maxlength="3000"></textarea>
     </label>
     <p class="note">Please don&rsquo;t include sensitive information (such as ID numbers) here. See our <a href="privacy.html">Privacy Policy</a>.</p>
-    <button class="btn" type="submit">Prepare request email</button>
+    <button class="btn" type="submit">Submit request</button>
     <p class="form-status" role="status"></p>
   </form>
 

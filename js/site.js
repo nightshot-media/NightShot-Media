@@ -60,48 +60,50 @@
     });
   });
 
-  /* ---------- Forms: compose an email in the visitor's mail app ---------- */
+  /* ---------- Forms: submit to send.php, show the result on the page ---------- */
 
-  var TO = 'contact@nightshot.media';
+  var loadedAt = Date.now();
 
-  function val(form, id) {
-    var el = form.querySelector('#' + id);
-    return el ? el.value.trim() : '';
-  }
+  document.querySelectorAll('form[data-ajax]').forEach(function (form) {
+    var status = form.querySelector('.form-status');
+    var btn = form.querySelector('button[type="submit"]');
 
-  var builders = {
-    form: function (f) {
-      var name = val(f, 'name'), email = val(f, 'email'), msg = val(f, 'message');
-      return {
-        subject: 'Inquiry from ' + name,
-        body: msg + '\n\n— ' + name + '\n' + email
-      };
-    },
-    'privacy-form': function (f) {
-      var name = val(f, 'name'), email = val(f, 'email'),
-          type = val(f, 'type'), details = val(f, 'details');
-      return {
-        subject: 'Privacy request: ' + type,
-        body: 'Request type: ' + type + '\nName: ' + name + '\nEmail: ' + email +
-              (details ? '\n\nDetails:\n' + details : '')
-      };
+    function show(text, kind) {
+      status.textContent = text;
+      status.className = 'form-status' + (kind ? ' ' + kind : '');
     }
-  };
 
-  Object.keys(builders).forEach(function (id) {
-    var form = document.getElementById(id);
-    if (!form) return;
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!form.checkValidity()) { form.reportValidity(); return; }
-      var m = builders[id](form);
-      var status = form.querySelector('.form-status');
-      if (status) {
-        status.textContent = 'Opening your email app with your message addressed to ' + TO +
-          '. If nothing opens, please email us directly at that address.';
-      }
-      window.location.href = 'mailto:' + TO + '?subject=' + encodeURIComponent(m.subject) +
-        '&body=' + encodeURIComponent(m.body);
+
+      var data = new FormData(form);
+      data.set('elapsed', String(Date.now() - loadedAt)); // time spent on the page (anti-bot)
+      show('Sending\u2026', '');
+      btn.disabled = true;
+
+      fetch(form.getAttribute('action'), {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' },
+        credentials: 'same-origin'
+      })
+        .then(function (r) { return r.json().catch(function () { return { ok: false }; }); })
+        .then(function (res) {
+          if (res && res.ok) {
+            form.reset();
+            show(res.message || 'Message submitted.', 'ok');
+            loadedAt = Date.now();
+            window.setTimeout(function () { btn.disabled = false; }, 8000); // avoid accidental double-sends
+          } else {
+            show((res && res.message) || 'Sorry, your message could not be sent. Please email contact@nightshot.media directly.', 'error');
+            btn.disabled = false;
+          }
+        })
+        .catch(function () {
+          show('Sorry, your message could not be sent. Please email contact@nightshot.media directly.', 'error');
+          btn.disabled = false;
+        });
     });
   });
 })();

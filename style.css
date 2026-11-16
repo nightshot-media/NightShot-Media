@@ -102,7 +102,10 @@ footer .biz a { color: var(--text); }
 select { appearance: auto; }
 .note { font-size: 0.82rem; color: var(--muted); text-align: left; line-height: 1.6; }
 .note a, .legal a, .page p a { text-decoration: underline; text-underline-offset: 3px; }
-.form-status { min-height: 1.4em; font-size: 0.85rem; color: var(--text); text-align: left; }
+.form-status { min-height: 1.4em; font-size: 0.9rem; color: var(--text); text-align: left; }
+.form-status.ok { color: var(--green); }
+.form-status.error { color: #ff9b9b; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .btn-row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
 .btn-row .btn { margin-top: 0; }
 

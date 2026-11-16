@@ -11,7 +11,7 @@ Legend: [x] done in code, [ ] needs owner input / decision.
 |---|---|
 | Stack | Plain static HTML + one stylesheet + two small scripts (`js/consent.js`, `js/site.js`). Hosting: Namecheap (per owner). Source is in GitHub (`nightshot-media/NightShot-Media`). |
 | Public pages | `index.html` (portfolio), `about.html`, `contact.html`; added: `privacy.html`, `terms.html`, `cookies.html`, `accessibility.html`, `privacy-request.html` |
-| Forms | Contact form (name, email, message). No backend: it composes a `mailto:` to contact@nightshot.media in the visitor's mail app. Added: Privacy Request form (same mechanism). |
+| Forms | Contact form (name, email, message) and Privacy Request form (name, email, request type, optional details). Both POST to `send.php` (added 2026-11-16), which emails the submission to contact@nightshot.media. Nothing is stored on the website; see Security. |
 | Analytics / pixels / SDKs | **None.** No GA, Meta/TikTok pixel, Hotjar, chat, CRM, ads. |
 | Cookies | **None set by the site.** |
 | localStorage | One key, `nightshot_consent` (added by this work) storing the visitor's choice. sessionStorage: none. |
@@ -45,7 +45,7 @@ Legend: [x] done in code, [ ] needs owner input / decision.
 | 3 | Cancellation & Refund | [x] Owner has no policy yet, so **no page is published and no footer link exists** (nothing invented). Terms say cancellation/refund terms are agreed per booking. A ready-to-fill template is in git history (commit `a5451c5`, file `cancellation.html`); restore it with `git show a5451c5:cancellation.html > cancellation.html`, fill it in, and re-add the footer link in each page. |
 | 4 | Cookie Policy (`cookies.html`) | [x] Table of the two technologies actually used. |
 | 5 | Consent system | [x] See "Consent design" below. |
-| 6 | Form consent | [x] Contact + Privacy Request forms explain mailto behavior and link to the Privacy Policy. No marketing opt-ins exist; no pre-checked boxes. |
+| 6 | Form consent | [x] Contact + Privacy Request forms explain that the message is delivered to contact@nightshot.media and link to the Privacy Policy. No marketing opt-ins exist; no pre-checked boxes. The Privacy Policy describes the form handler and its temporary spam-protection record. |
 | 7 | Data minimization | [x] Retained: name, email, message (all needed to reply). Nothing sensitive collected; forms warn against sending sensitive info. Nothing needed removing. |
 | 8 | Third-party audit | [x] Section 4. |
 | 9 | Dark patterns | [x] None existed. New consent UI: Accept / Reject / Save equal size, color and position; nothing pre-selected. |
@@ -84,7 +84,8 @@ Nothing non-essential loads on page view, so **no banner appears on load** (you 
 ## 5. Security review
 - No API keys, tokens, passwords, or env vars in repo or history.
 - No XSS sinks with untrusted data (`innerHTML` is used only with static strings). No `eval`, `document.write`, open redirects, uploads, or database.
-- Forms use `mailto:`; values are `encodeURIComponent`-encoded. Spam: nothing is stored server-side, so no endpoint to abuse.
+- `send.php` (form handler): POST-only; validates every field and length; strips control characters and line breaks from anything placed in email headers (tested against header-injection); fixed recipient (visitors cannot choose where mail goes); honeypot field; minimum-fill-time check; per-visitor throttle (15 s gap, 5/hour) using a hashed IP in a temp file auto-deleted after 2 h; no message content logged. No cookies/sessions, so no CSRF token is needed (an attacker can only cause an email to contact@, which the throttle limits). Still recommended for later: a CAPTCHA/Turnstile if spam appears (would need disclosure).
+- Deliverability: mail is sent from `website@nightshot.media` with the visitor as Reply-To. Check SPF/DKIM in cPanel "Email Deliverability", and check the spam folder after the first live test.
 - No source maps / debug output. No analytics receiving sensitive data. No sensitive data in URLs.
 - Larger item to consider later (not changed): GitHub Pages cannot set HTTP security headers; if you move to Netlify/Cloudflare, add `X-Content-Type-Options`, `Referrer-Policy`, and `frame-ancestors` via headers (meta CSP cannot set `frame-ancestors`).
 - If you add a real form backend later, add server-side validation, rate limiting/spam protection (e.g., hCaptcha/Turnstile, which would need disclosure) and CSRF protection.
@@ -118,5 +119,6 @@ Still open / worth doing:
 No project build/lint/type-check/test tooling exists (static site). Instead:
 - axe-core (WCAG 2.0/2.1/2.2 A+AA + best-practice) on all 9 pages: 0 violations.
 - Playwright (Chromium) at 1280, 768 and 375 px: no horizontal overflow, no console errors/warnings, CSP did not block anything.
+- Form handler (PHP 8.3, mail captured to a file): valid contact + privacy submissions, honeypot, too-fast, bad email, empty message, header injection, bad request type, rate limit, GET (405), plus a Playwright end-to-end run (status message, no mail app launch, form cleared, error message). Not tested: real delivery through Namecheap's mail system.
 - Scripted flows (all passed, re-run after the 2026-11-13 content update): no storage/cookies/iframes/popups on first load; Vimeo blocked until choice; Play once / Always allow / Not now; Accept, Reject, Save, change later; 12-month expiry; focus trap, Esc, focus return; skip link; form validation; all footer links 200.
 - Not tested: actual Vimeo playback inside the iframe (headless/offline limitations), real mail-client handoff for `mailto:`, screen readers (NVDA/VoiceOver), Safari/Firefox. Please spot-check these on the live site.
