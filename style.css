@@ -69,9 +69,9 @@ textarea { min-height: 150px; resize: vertical; }
 .btn:hover { opacity: .8; }
 
 /* Footer */
-footer { padding: 50px 24px 60px; font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+footer { padding: 38px 24px 44px; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
 footer a:hover { color: var(--text); }
-footer .copy { display: block; margin-top: 10px; }
+footer .copy { display: block; margin-top: 8px; }
 
 @media (max-width: 560px) {
   header { padding-top: 40px; }
@@ -94,8 +94,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 /* ---------- Footer legal links ---------- */
 footer .biz a { color: var(--text); }
-.legal-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 22px; margin: 18px auto 0; max-width: 900px; }
-.legal-nav a, .linkbtn { color: var(--muted); }
+.legal-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px; margin: 14px auto 0; max-width: 900px; }
+.legal-nav a, .linkbtn { color: var(--muted); font-size: 0.6rem; letter-spacing: 0.12em; font-weight: 500; }
 .legal-nav a:hover, .linkbtn:hover { color: var(--text); }
 .linkbtn { background: none; border: 0; padding: 0; font: inherit; letter-spacing: inherit; text-transform: inherit; cursor: pointer; }
 
