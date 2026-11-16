@@ -1,11 +1,14 @@
-/* Self-hosted, open-license font (SIL OFL 1.1; see fonts/OFL-inter.txt) */
+/* Self-hosted fonts. PP Neue Montreal: see ASSET_LICENSE_AUDIT.md. Inter (SIL OFL 1.1, fonts/OFL-inter.txt) is the fallback. */
+@font-face { font-family: "PP Neue Montreal"; src: url("fonts/pp-neue-montreal-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "PP Neue Montreal"; src: url("fonts/pp-neue-montreal-500.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "PP Neue Montreal"; src: url("fonts/pp-neue-montreal-700.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
 @font-face {
   font-family: "Inter";
   src: url("fonts/inter.woff2") format("woff2");
   font-weight: 100 900; font-style: normal; font-display: swap;
 }
 :root {
-  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --sans: "PP Neue Montreal", "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   --bg: #000;
   --text: #fff;
   --muted: #8a8a8a;
@@ -28,7 +31,7 @@ a.btn { display: inline-block; }
 
 /* Header */
 header { padding: 56px 24px 0; }
-.logo { color: var(--green); display: inline-block; font-size: clamp(1.5rem, 4vw, 2.1rem); font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; padding-left: 0.12em; line-height: 1.1; }
+.logo { color: var(--green); display: inline-block; font-size: clamp(1.5rem, 4vw, 2.1rem); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding-left: 0.12em; line-height: 1.1; }
 nav { margin-top: 34px; display: flex; justify-content: center; flex-wrap: wrap; gap: 14px 30px; }
 nav a { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); transition: color .2s; }
 nav a:hover, nav a.active { color: var(--text); }
