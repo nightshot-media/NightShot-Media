@@ -1,21 +1,10 @@
-/* Self-hosted, open-license fonts (SIL OFL 1.1; see fonts/OFL-*.txt) */
-@font-face {
-  font-family: "Bodoni Moda";
-  src: url("fonts/bodoni-moda.woff2") format("woff2");
-  font-weight: 400 900; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: "Bodoni Moda";
-  src: url("fonts/bodoni-moda-italic.woff2") format("woff2");
-  font-weight: 400 900; font-style: italic; font-display: swap;
-}
+/* Self-hosted, open-license font (SIL OFL 1.1; see fonts/OFL-inter.txt) */
 @font-face {
   font-family: "Inter";
   src: url("fonts/inter.woff2") format("woff2");
   font-weight: 100 900; font-style: normal; font-display: swap;
 }
 :root {
-  --serif: "Bodoni Moda", "Didot", "Bodoni 72", "Times New Roman", serif;
   --sans: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   --bg: #000;
   --text: #fff;
@@ -33,27 +22,26 @@ body {
   text-align: center;
   -webkit-font-smoothing: antialiased;
 }
-.logo, .intro h1, .project h2, .page h1 { font-family: var(--serif); font-weight: 400; }
-nav a, .intro p, label, .btn, footer { font-family: var(--sans); font-weight: 500; }
+.logo, .intro h1, .project h2, .page h1, nav a, .intro p, label, .btn, footer { font-family: var(--sans); font-weight: 500; }
 a { color: inherit; text-decoration: none; }
 a.btn { display: inline-block; }
 
 /* Header */
 header { padding: 56px 24px 0; }
-.logo { color: var(--green); display: inline-block; font-size: clamp(1.7rem, 4.5vw, 2.6rem); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; padding-left: 0.14em; line-height: 1.1; }
+.logo { color: var(--green); display: inline-block; font-size: clamp(1.5rem, 4vw, 2.1rem); font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; padding-left: 0.12em; line-height: 1.1; }
 nav { margin-top: 34px; display: flex; justify-content: center; flex-wrap: wrap; gap: 14px 30px; }
 nav a { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); transition: color .2s; }
 nav a:hover, nav a.active { color: var(--text); }
 
 /* Intro */
 .intro { margin: 56px auto 70px; padding: 0 24px; }
-.intro h1.role { font-size: clamp(1.3rem, 3vw, 1.9rem); font-style: italic; letter-spacing: 0.01em; text-transform: none; line-height: 1.3; }
-.intro .sub { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+.intro h1.role { font-size: clamp(1.5rem, 3.6vw, 2.2rem); font-weight: 500; letter-spacing: -0.025em; text-transform: none; line-height: 1.2; }
+.intro .sub { font-size: 0.72rem; letter-spacing: 0.2em; margin-top: 14px; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
 
 /* Work: one big video per row */
 .work { max-width: 1000px; margin: 0 auto; padding: 0 20px 40px; }
 .project { margin-bottom: 90px; }
-.project h2 { font-size: clamp(1.4rem, 3vw, 2.1rem); letter-spacing: 0.005em; line-height: 1.25; margin-bottom: 22px; }
+.project h2 { font-size: 1.05rem; font-weight: 500; letter-spacing: -0.005em; line-height: 1.3; margin-bottom: 18px; }
 .project .cat { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin: 6px 0 22px; }
 .video { position: relative; aspect-ratio: 16/9; background: linear-gradient(135deg, #17171b, #060607); overflow: hidden; }
 .video-play { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; background: none; cursor: pointer; color: inherit; }
@@ -64,12 +52,12 @@ nav a:hover, nav a.active { color: var(--text); }
 
 /* About + Contact */
 .page { max-width: 560px; margin: 70px auto 120px; padding: 0 24px; }
-.page h1 { font-size: clamp(1.8rem, 4vw, 2.4rem); letter-spacing: 0.005em; margin-bottom: 18px; }
+.page h1 { font-size: clamp(1.7rem, 4vw, 2.2rem); letter-spacing: -0.025em; margin-bottom: 18px; }
 .page p { color: var(--muted); margin-bottom: 30px; }
 .page .email { color: var(--text); border-bottom: 1px solid var(--muted); }
 form { display: flex; flex-direction: column; gap: 18px; text-align: left; margin-top: 36px; }
 label { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); display: flex; flex-direction: column; gap: 8px; }
-input, textarea, select { background: #0c0c0c; border: 1px solid var(--field-border); color: var(--text); padding: 13px 14px; font: 1rem/1.4 inherit; transition: border-color .2s; }
+input, textarea, select { background: #0c0c0c; border: 1px solid var(--field-border); color: var(--text); padding: 13px 14px; font-family: var(--sans); font-size: 1rem; line-height: 1.4; transition: border-color .2s; }
 input:focus, textarea:focus, select:focus { border-color: var(--text); }
 ::placeholder { color: #8a8a8a; opacity: 1; }
 textarea { min-height: 150px; resize: vertical; }
@@ -108,7 +96,7 @@ footer .biz a { color: var(--text); }
 .linkbtn { background: none; border: 0; padding: 0; font: inherit; letter-spacing: inherit; text-transform: inherit; cursor: pointer; }
 
 /* ---------- Forms ---------- */
-select { font: 1rem/1.4 inherit; appearance: auto; }
+select { appearance: auto; }
 .note { font-size: 0.82rem; color: var(--muted); text-align: left; line-height: 1.6; }
 .note a, .legal a, .page p a { text-decoration: underline; text-underline-offset: 3px; }
 .form-status { min-height: 1.4em; font-size: 0.85rem; color: var(--text); text-align: left; }
@@ -125,7 +113,7 @@ select { font: 1rem/1.4 inherit; appearance: auto; }
 .consent-dialog { margin: auto; padding: 0; width: calc(100% - 32px); max-width: 540px; background: #0c0c0c; color: var(--text); border: 1px solid #5a5a5a; text-align: left; }
 .consent-dialog::backdrop { background: rgba(0,0,0,.8); }
 .consent-inner { position: relative; padding: 30px 26px 26px; display: flex; flex-direction: column; gap: 16px; font-size: 0.9rem; }
-.consent-inner h2 { font-family: var(--serif); font-weight: 400; font-size: 1.6rem; letter-spacing: 0; line-height: 1.2; padding-right: 32px; }
+.consent-inner h2 { font-family: var(--sans); font-weight: 500; font-size: 1.4rem; letter-spacing: -0.02em; line-height: 1.2; padding-right: 32px; }
 .consent-inner p { color: #cfcfcf; }
 .consent-close { position: absolute; top: 10px; right: 14px; background: none; border: 0; color: var(--text); font-size: 1.8rem; line-height: 1; cursor: pointer; padding: 4px 8px; }
 .consent-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; padding: 14px 0; border-top: 1px solid var(--line); }
@@ -138,7 +126,7 @@ select { font: 1rem/1.4 inherit; appearance: auto; }
 
 /* ---------- Legal pages ---------- */
 .legal { max-width: 68ch; margin: 64px auto 110px; padding: 0 24px; text-align: left; }
-.legal h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.9rem, 5vw, 2.8rem); letter-spacing: 0; text-align: center; line-height: 1.2; }
+.legal h1 { font-family: var(--sans); font-weight: 500; font-size: clamp(1.8rem, 4.5vw, 2.4rem); letter-spacing: -0.025em; text-align: center; line-height: 1.2; }
 .legal .updated { text-align: center; color: var(--muted); font-size: 0.82rem; margin: 10px 0 40px; }
 .legal h2 { font-family: var(--sans); font-weight: 600; font-size: 0.76rem; letter-spacing: 0.16em; text-transform: uppercase; margin: 42px 0 12px; line-height: 1.5; }
 .legal h3 { font-size: 0.95rem; font-weight: 600; margin: 22px 0 6px; }
