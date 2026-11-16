@@ -6,7 +6,8 @@
     el.textContent = new Date().getFullYear();
   });
 
-  /* ---------- Video: click to load (Vimeo) ---------- */
+  /* ---------- Video: loads Vimeo's player when play is pressed ---------- */
+  /* Visitors who turned Vimeo off in Cookie Preferences get a notice first. */
 
   function loadVideo(box) {
     var url = box.getAttribute('data-video');
@@ -55,8 +56,8 @@
     var btn = box.querySelector('.video-play');
     if (!btn) return;
     btn.addEventListener('click', function () {
-      if (window.NightshotConsent && window.NightshotConsent.allowsMedia()) loadVideo(box);
-      else askBeforeLoading(box, btn);
+      if (window.NightshotConsent && window.NightshotConsent.blocksMedia()) askBeforeLoading(box, btn);
+      else loadVideo(box);
     });
   });
 

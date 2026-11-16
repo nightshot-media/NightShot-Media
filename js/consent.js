@@ -3,7 +3,8 @@
  *
  * The site itself sets no cookies and runs no analytics or advertising.
  * The only optional third-party technology is the Vimeo video player, which
- * is loaded only after a visitor chooses to play a video (see js/site.js).
+ * is loaded only when a visitor presses play (see js/site.js). Visitors who
+ * turn Vimeo off here are asked before each video.
  *
  * The visitor's choice is stored in localStorage under KEY and expires after
  * MAX_AGE_MS, after which they are asked again. To add another optional
@@ -70,7 +71,7 @@
         '</div>' +
         '<div class="consent-row">' +
           '<label for="consent-media"><strong>Third-party video (Vimeo)</strong>' +
-          '<span class="consent-desc">Lets the site load the Vimeo video player when you press play. Vimeo may receive your IP address and device information and may set cookies. Off by default.</span></label>' +
+          '<span class="consent-desc">Videos play through Vimeo\u2019s player when you press play. Vimeo may receive your IP address and device information and may set cookies. Turn this off and we will ask before loading any video.</span></label>' +
           '<input type="checkbox" id="consent-media">' +
         '</div>' +
         '<p class="consent-links"><a href="cookies.html">Cookie Policy</a> · <a href="privacy.html">Privacy Policy</a></p>' +
@@ -101,7 +102,7 @@
   function openDialog() {
     var d = document.getElementById('consent-dialog') || buildDialog();
     var r = read();
-    d.querySelector('#consent-media').checked = !!(r && r.media);
+    d.querySelector('#consent-media').checked = r ? r.media : true; // on by default: videos load when you press play
     if (typeof d.showModal === 'function') d.showModal();
     else d.setAttribute('open', '');
   }
@@ -113,6 +114,8 @@
 
   window.NightshotConsent = {
     allowsMedia: function () { var r = read(); return !!(r && r.media); },
+    // True only when the visitor has explicitly turned Vimeo off.
+    blocksMedia: function () { var r = read(); return !!(r && !r.media); },
     hasChoice: function () { return read() !== null; },
     save: save,
     open: openDialog

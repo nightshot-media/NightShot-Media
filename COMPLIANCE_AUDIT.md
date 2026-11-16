@@ -65,18 +65,18 @@ Legend: [x] done in code, [ ] needs owner input / decision.
 | - | Security | [x] Strict CSP meta tag (self + `frame-src player.vimeo.com`), referrer policy, inline script/style removed, `maxlength` on fields, no `innerHTML` with user data. No secrets. Contact form has no backend so no CSRF/injection surface. |
 | - | SEO/metadata | [x] Unique `<title>` and description per legal page, one `<h1>` each, logical headings. No `<link rel="canonical">`: the final domain isn't known; add `https://<your-domain>/<page>` once decided. `cancellation.html` is `noindex`. |
 
-### Consent design (and one deliberate deviation)
-Nothing non-essential loads on page view, so **no banner appears on load** (you asked for no unnecessary popups). Instead:
-- **Click-to-load notice** on each video before Vimeo's player loads: "Play video" / "Always allow Vimeo" / "Not now".
-- **Cookie Preferences dialog** (footer + Cookie Policy page): Accept All, Reject Non-Essential, Save Preferences; Vimeo toggle off by default; choice stored 12 months, then re-asked.
-- Vimeo is requested with `dnt=1`.
+### Consent design (and deliberate deviations)
+Nothing non-essential loads on page view, so **no banner appears on load** (owner asked for no unnecessary popups).
+- **Videos (changed 2026-11-16 at the owner's request):** the Vimeo player loads as soon as a visitor presses play, with no notice. Vimeo is requested with `dnt=1`. Pressing play is the visitor's action, and the Privacy and Cookie Policies disclose that Vimeo may receive their IP address and set cookies.
+- **Opt-out kept:** the **Cookie Preferences** dialog (footer + Cookie Policy page) has Accept All, Reject Non-Essential and Save Preferences. If a visitor turns Vimeo off, the old notice ("Play video" / "Always allow Vimeo" / "Not now") appears before each video. The Vimeo toggle is on by default to match the actual behavior. The choice is stored for 12 months.
+- Higher-risk note: showing no notice before Vimeo loads is a lighter privacy posture than before. It is typical for U.S. portfolio sites but weaker for EU/UK visitors (ePrivacy rules generally want consent before non-essential cookies). If you get EU/UK traffic, ask for the notice back.
 - If you ever add analytics/pixels, add a checkbox in `js/consent.js` and gate the script on `NightshotConsent`; a load-time banner can then be added.
 
 ## 4. Third-party services
 
 | Service | What / why | Data it may receive | Cookies | Loads before consent? | Necessary? |
 |---|---|---|---|---|---|
-| Vimeo player (`player.vimeo.com`) | Plays portfolio videos | IP, device/browser, referring page, playback info | May set cookies/storage (set by Vimeo; `dnt=1` requested) | **No**, only after click + notice | Yes for videos; optional for the site |
+| Vimeo player (`player.vimeo.com`) | Plays portfolio videos | IP, device/browser, referring page, playback info | May set cookies/storage (set by Vimeo; `dnt=1` requested) | **No**, only when the visitor presses play (and not at all if they turned Vimeo off) | Yes for videos; optional for the site |
 | Vimeo oEmbed (thumbnail fetch) | Used once at build time to save thumbnails locally | n/a to visitors | n/a | n/a (not on the live site) | n/a |
 | Dropbox | Source storage of original videos; not referenced by the site | none | none | n/a | n/a |
 | Namecheap (hosting) | Serves the site | IP/UA in server logs | possibly none | n/a | Yes |
