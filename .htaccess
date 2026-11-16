@@ -12,3 +12,11 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [L,R=301]
 
 # Don't list folder contents
 Options -Indexes
+
+# Always re-check pages, scripts and styles so updates show up right away
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html|css|js|php)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+    Header unset Expires
+  </FilesMatch>
+</IfModule>
