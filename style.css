@@ -32,7 +32,7 @@ a.btn { display: inline-block; }
 
 /* Header */
 header { padding: 56px 24px 0; }
-.logo { font-family: "Sequel", var(--sans); font-weight: 400; color: var(--green); display: inline-block; font-size: clamp(1.15rem, 3.2vw, 1.45rem); letter-spacing: 0.2em; text-transform: uppercase; padding-left: 0.2em; line-height: 1.2; }
+.logo { font-family: "Sequel", var(--sans); font-weight: 400; color: var(--green); display: inline-block; font-size: clamp(1.6rem, 5vw, 2.5rem); letter-spacing: 0.2em; text-transform: uppercase; padding-left: 0.2em; line-height: 1.2; }
 nav { margin-top: 34px; display: flex; justify-content: center; flex-wrap: wrap; gap: 14px 30px; }
 nav a { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); transition: color .2s; }
 nav a:hover, nav a.active { color: var(--text); }
@@ -75,7 +75,7 @@ footer .copy { display: block; margin-top: 8px; }
 
 @media (max-width: 560px) {
   header { padding-top: 40px; }
-  .logo { font-size: 1.15rem; }
+  .logo { font-size: 1.6rem; }
   .project { margin-bottom: 60px; }
   .play { border-left-width: 24px; border-top-width: 15px; border-bottom-width: 15px; }
 }
