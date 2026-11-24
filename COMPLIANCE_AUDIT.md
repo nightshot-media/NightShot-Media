@@ -10,7 +10,7 @@ Legend: [x] done in code, [ ] needs owner input / decision.
 | Item | Finding |
 |---|---|
 | Stack | Plain static HTML + one stylesheet + two small scripts (`js/consent.js`, `js/site.js`). Hosting: Namecheap (per owner). Source is in GitHub (`nightshot-media/NightShot-Media`). |
-| Public pages | `index.html` (portfolio), `about.html`, `contact.html`; added: `privacy.html`, `terms.html`, `cookies.html`, `accessibility.html`, `privacy-request.html` |
+| Public pages | `index.html` (portfolio), `recent-work.html` (newest 3 videos, added 2026-11-24), `about.html`, `contact.html`; added: `privacy.html`, `terms.html`, `cookies.html`, `accessibility.html`, `privacy-request.html` |
 | Forms | Contact form (name, email, message) and Privacy Request form (name, email, request type, optional details). Both POST to `send.php` (added 2026-11-16), which emails the submission to contact@nightshot.media. Nothing is stored on the website; see Security. |
 | Analytics / pixels / SDKs | **None.** No GA, Meta/TikTok pixel, Hotjar, chat, CRM, ads. |
 | Cookies | **None set by the site.** |
