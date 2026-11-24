@@ -74,7 +74,7 @@
           '<span class="consent-desc">Videos play through Vimeo\u2019s player when you press play. Vimeo may receive your IP address and device information and may set cookies. Turn this off and we will ask before loading any video.</span></label>' +
           '<input type="checkbox" id="consent-media">' +
         '</div>' +
-        '<p class="consent-links"><a href="cookies.html">Cookie Policy</a> · <a href="privacy.html">Privacy Policy</a></p>' +
+        '<p class="consent-links"><a href="cookies">Cookie Policy</a> · <a href="privacy">Privacy Policy</a></p>' +
         '<div class="btn-row">' +
           '<button type="button" class="btn" data-action="accept">Accept All</button>' +
           '<button type="button" class="btn" data-action="reject">Reject Non-Essential</button>' +

@@ -10,7 +10,7 @@ Legend: [x] done in code, [ ] needs owner input / decision.
 | Item | Finding |
 |---|---|
 | Stack | Plain static HTML + one stylesheet + two small scripts (`js/consent.js`, `js/site.js`). Hosting: Namecheap (per owner). Source is in GitHub (`nightshot-media/NightShot-Media`). |
-| Public pages | `index.html` (portfolio), `recent-work.html` (11 Sarah Landry / Roadrunner Boston videos, 2026-11-24), `about.html`, `contact.html`; added: `privacy.html`, `terms.html`, `cookies.html`, `accessibility.html`, `privacy-request.html` |
+| Public pages | `index.html` (portfolio), `recent-work.html` (11 Sara Landry / Roadrunner Boston videos, 2026-11-24), `about.html`, `contact.html`; added: `privacy.html`, `terms.html`, `cookies.html`, `accessibility.html`, `privacy-request.html` |
 | Forms | Contact form (name, email, message) and Privacy Request form (name, email, request type, optional details). Both POST to `send.php` (added 2026-11-16), which emails the submission to contact@nightshot.media. Nothing is stored on the website; see Security. |
 | Analytics / pixels / SDKs | **None.** No GA, Meta/TikTok pixel, Hotjar, chat, CRM, ads. |
 | Cookies | **None set by the site.** |
@@ -122,3 +122,6 @@ No project build/lint/type-check/test tooling exists (static site). Instead:
 - Form handler (PHP 8.3, mail captured to a file): valid contact + privacy submissions, honeypot, too-fast, bad email, empty message, header injection, bad request type, rate limit, GET (405), plus a Playwright end-to-end run (status message, no mail app launch, form cleared, error message). Not tested: real delivery through Namecheap's mail system.
 - Scripted flows (all passed, re-run after the 2026-11-13 content update): no storage/cookies/iframes/popups on first load; Vimeo blocked until choice; Play once / Always allow / Not now; Accept, Reject, Save, change later; 12-month expiry; focus trap, Esc, focus return; skip link; form validation; all footer links 200.
 - Not tested: actual Vimeo playback inside the iframe (headless/offline limitations), real mail-client handoff for `mailto:`, screen readers (NVDA/VoiceOver), Safari/Firefox. Please spot-check these on the live site.
+
+## 9. Clean URLs (2026-11-24)
+Page addresses no longer show `.html` (`/about`, `/recent-work`, `/privacy`, ...). `.htaccess` redirects old `.html` addresses (301) to the clean ones, redirects `/page/` to `/page`, and serves `page.html` for `/page`. Rules were tested on Apache 2.4 (redirects, rewrites, query strings, 404s). If the live site ever shows a 500 error after an upload, rename `.htaccess` to `.htaccess-off` to restore access, then tell the developer. `send.php` keeps its name (it is an endpoint, not a page).

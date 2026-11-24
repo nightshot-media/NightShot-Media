@@ -40,7 +40,7 @@ function respond(bool $ok, string $message, int $status = 200): never
        . '<meta name="robots" content="noindex"><title>' . $title . ' — Nightshot Media</title>'
        . '<link rel="stylesheet" href="style.css"></head><body>'
        . '<main class="page"><h1>' . $title . '</h1><p>' . $msg . '</p>'
-       . '<a class="btn" href="index.html">Back to site</a></main></body></html>';
+       . '<a class="btn" href="./">Back to site</a></main></body></html>';
     exit;
 }
 

@@ -31,7 +31,7 @@
     p.setAttribute('aria-label', 'Third-party video notice');
     p.innerHTML =
       '<p>This video is hosted by Vimeo. Playing it loads Vimeo’s player, which may collect your IP address and device information and set cookies. ' +
-      '<a href="cookies.html">Cookie Policy</a></p>' +
+      '<a href="cookies">Cookie Policy</a></p>' +
       '<div class="btn-row">' +
         '<button type="button" class="btn" data-choice="once">Play video</button>' +
         '<button type="button" class="btn" data-choice="always">Always allow Vimeo</button>' +
